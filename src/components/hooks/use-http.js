@@ -1,13 +1,13 @@
-import React ,{useState} from "react";
+import React ,{useState , useCallback} from "react";
 
-const useHttp=(requestConfig, applyData)=>
+const useHttp=( )=>
 {
 
     console.log('working')
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState(null);
 
-    const sendRequest = async (taskText) => {
+    const sendRequest =useCallback( async (requestConfig,applyData) => {
         setIsLoading(true);
         setError(null);
         console.log('working fetch')
@@ -33,7 +33,7 @@ const useHttp=(requestConfig, applyData)=>
           setError(err.message || 'Something went wrong!');
         }
         setIsLoading(false);
-      };
+      },[]);
 
 
       return {
@@ -46,7 +46,7 @@ export default useHttp;
 
 
 
-
+//Here useCallback receive all data as its parameters therefor no dependencies left in it
 
 
 
